@@ -11,7 +11,7 @@
                     margin: 240px;
                     padding: 15px;
                     border-top-left-radius: 10px;
-                    border-top-right-radius: 10px;
+                    border-top-right-radius: 10px;            
                 }
                 .codeContainer{
                         margin-top: 50px;
@@ -32,3 +32,59 @@
                 }
         </style>
 </head>
+<body>
+
+        <div class="row">
+                <div class="col-md-4 col-md-offset-4 codeContainer">
+                        <h3 class="banner text-center">Target Employee Barcode Generator</h3>
+
+                        <div class="pd-15">
+                                <div class="form-group">
+                                        <label>Backroom Location</label>
+                                        <input type="text" name="barcodeValue" id="barcodeValue" class="form-control" value="" >
+                                </div>
+
+                                <div class="form-group">
+                                        <label>Store Number
+                    </label>
+                                        <select name="store" id="store" class="form-control">
+                                                <option value="code39">T1110</option>
+                                        </select> 
+                                </div>
+
+                                <div class="form-group">
+                                        <label>Display Text</label>
+                    <select name="showText" id="showText" class="form-control" required>
+                                                <option value="true">Yes</option>
+                                                <option value="false">No</option>
+                                        </select>
+                                </div>
+
+                                <input type="button" onclick="generateBarcode()" class="btn btn-success form-control" value="Generate">
+
+                                <div class="text-center">
+                                        <svg id="barcode"></svg>
+                                </div>
+
+                        </div>
+                </div>
+        </div>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.3/dist/JsBarcode.all.min.js"></script>
+        <script type="text/javascript">
+                function generateBarcode(){
+            var barcodeType = document.getElementById("store").value;
+                        var barcodeValue = document.getElementById("barcodeValue").value;
+                        var showText = document.getElementById("showText").value;
+                        JsBarcode("#barcode", barcodeValue, {
+                                format: barcodeType,
+                                displayValue: showText,
+                                lineColor: "#24292e",
+                                width:2,
+                                height:80,
+                                fontSize: 20
+                        });
+                }
+                generateBarcode();
+        </script>
+</body>
+</html>
